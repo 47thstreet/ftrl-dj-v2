@@ -1,0 +1,210 @@
+export interface DjProfile {
+  slug: string;
+  name: string;
+  realName: string;
+  instagram: string;
+  tagline: string;
+  bio: string;
+  genres: string[];
+  primaryColor: string;
+  accentColor: string;
+  heroImage?: string;
+  logoImage?: string;
+  socialLinks: Record<string, string>;
+}
+
+export const djs: DjProfile[] = [
+  {
+    slug: 'alanexperience', name: 'Alan Experience', realName: 'Alan Heifitz',
+    instagram: 'alanexperience', tagline: 'Bringing the experience',
+    bio: 'DJ and producer crafting immersive sets that blur the line between live performance and nightlife. Known for high-energy events and seamless genre-blending.',
+    genres: ['House', 'Electronic', 'Live Sets'],
+    primaryColor: '#8b5cf6', accentColor: '#ec4899',
+    logoImage: '/avatars/alanexperience.jpg',
+    socialLinks: { instagram: 'https://instagram.com/alanexperience', spotify: '#', soundcloud: '#', youtube: '#' },
+  },
+  {
+    slug: 'alimar', name: 'Ali Mar', realName: 'Alimar',
+    instagram: 'alimarprod', tagline: 'Producer · DJ',
+    bio: 'Music producer and DJ with a passion for creating original sounds. Blending Middle Eastern influences with modern electronic production.',
+    genres: ['Electronic', 'World', 'Production'],
+    primaryColor: '#06b6d4', accentColor: '#8b5cf6',
+    logoImage: '/avatars/alimar.jpg',
+    socialLinks: { instagram: 'https://instagram.com/alimarprod', spotify: '#', soundcloud: '#', youtube: '#' },
+  },
+  {
+    slug: 'arielkatz', name: 'Ariel Katz', realName: 'Ariel Katz',
+    instagram: '_ahava_productions_', tagline: 'Ahava Productions',
+    bio: 'DJ and event producer creating unforgettable experiences. Blending music, energy, and atmosphere into every performance.',
+    genres: ['Open Format', 'Club', 'Electronic'],
+    primaryColor: '#6366f1', accentColor: '#ec4899',
+    logoImage: '/avatars/arielkatz.jpg',
+    socialLinks: { instagram: 'https://instagram.com/_ahava_productions_', spotify: '#', soundcloud: '#' },
+  },
+  {
+    slug: 'avishag-gold', name: 'IVY', realName: 'Avishag Gold',
+    instagram: 'avishag.gold', tagline: 'IVY',
+    bio: 'Rising DJ and artist bringing fresh energy to every set. A unique sound that fuses vibrant beats with bold creativity.',
+    genres: ['Pop', 'Dance', 'Electronic'],
+    primaryColor: '#f59e0b', accentColor: '#ef4444',
+    logoImage: '/avatars/avishag-gold.jpg',
+    socialLinks: { instagram: 'https://instagram.com/avishag.gold', spotify: '#', tiktok: '#', youtube: '#' },
+  },
+  {
+    slug: 'dj-aviv', name: 'DJ Aviv', realName: 'Aviv',
+    instagram: 'dj.aviv', tagline: 'Turning up the heat',
+    bio: 'Professional DJ delivering unforgettable club and event experiences. Specializing in high-energy sets that keep the crowd moving all night.',
+    genres: ['Club', 'Hip-Hop', 'Electronic'],
+    primaryColor: '#10b981', accentColor: '#3b82f6',
+    logoImage: '/avatars/dj-aviv.jpg',
+    socialLinks: { instagram: 'https://instagram.com/dj.aviv', spotify: '#', soundcloud: '#', tiktok: '#' },
+  },
+  {
+    slug: 'djbaturo', name: 'DJ Baturo', realName: 'Mike',
+    instagram: 'djbaturo', tagline: 'Mike behind the decks',
+    bio: 'Veteran behind the decks with a knack for reading the room. From intimate venues to festival stages — always delivering the right energy.',
+    genres: ['Open Format', 'Hip-Hop', 'Dance'],
+    primaryColor: '#ef4444', accentColor: '#f59e0b',
+    logoImage: '/avatars/djbaturo.jpg',
+    socialLinks: { instagram: 'https://instagram.com/djbaturo', spotify: '#', soundcloud: '#', youtube: '#', tiktok: '#' },
+  },
+  {
+    slug: 'djneryacohen', name: 'DJ Nerya Cohen', realName: 'Nerya Cohen',
+    instagram: 'djneryacohen', tagline: 'Vibes on vibes',
+    bio: 'Bringing the best vibes to clubs, events, and private shows. A versatile DJ with a deep love for music that moves people.',
+    genres: ['Mizrahi', 'Club', 'Open Format'],
+    primaryColor: '#8b5cf6', accentColor: '#06b6d4',
+    logoImage: '/avatars/djneryacohen.jpg',
+    socialLinks: { instagram: 'https://instagram.com/djneryacohen', spotify: '#', youtube: '#', tiktok: '#' },
+  },
+  {
+    slug: 'djyonicohen', name: 'DJ Yoni Cohen', realName: 'Yoni Cohen',
+    instagram: 'djyonicohen', tagline: 'Gen Z Vibes',
+    bio: 'Gen Z energy meets professional mixing. Curating the sound of a new generation — from viral hits to underground gems.',
+    genres: ['Gen Z', 'Pop', 'Hip-Hop'],
+    primaryColor: '#3b82f6', accentColor: '#ec4899',
+    logoImage: '/avatars/djyonicohen.jpg',
+    socialLinks: { instagram: 'https://instagram.com/djyonicohen', spotify: '#', tiktok: '#', youtube: '#' },
+  },
+  {
+    slug: 'guninmusic', name: 'Gunin', realName: 'Garett Gunin',
+    instagram: 'guninmusic', tagline: 'Sound architect',
+    bio: 'Music producer and DJ sculpting sonic landscapes. From studio sessions to live performances, every beat is intentional.',
+    genres: ['Electronic', 'Deep House', 'Production'],
+    primaryColor: '#ec4899', accentColor: '#8b5cf6',
+    logoImage: '/avatars/guninmusic.jpg',
+    socialLinks: { instagram: 'https://instagram.com/guninmusic', spotify: '#', soundcloud: '#', beatport: '#' },
+  },
+  {
+    slug: 'jake-nissan', name: 'Jake Nissan', realName: 'Jake Nissan',
+    instagram: 'jake_nissan', tagline: 'Crown on the decks',
+    bio: 'High-energy DJ commanding stages with precision mixing and crowd intuition. Every set is a journey from start to finish.',
+    genres: ['Club', 'Electronic', 'Hip-Hop'],
+    primaryColor: '#f97316', accentColor: '#ef4444',
+    logoImage: '/avatars/jake-nissan.jpg',
+    socialLinks: { instagram: 'https://instagram.com/jake_nissan', spotify: '#', soundcloud: '#', tiktok: '#' },
+  },
+  {
+    slug: 'kazaz', name: 'KAZAZ', realName: 'Kazaz',
+    instagram: '_kazaz__', tagline: 'Pure rhythm',
+    bio: 'DJ and selector with an ear for the underground. Digging deep into crates to find the sounds that make the floor shake.',
+    genres: ['Underground', 'Techno', 'House'],
+    primaryColor: '#14b8a6', accentColor: '#6366f1',
+    logoImage: '/avatars/kazaz.jpg',
+    socialLinks: { instagram: 'https://instagram.com/_kazaz__', spotify: '#', soundcloud: '#', mixcloud: '#' },
+  },
+  {
+    slug: 'melodic', name: 'MELODIC', realName: 'Melodic',
+    instagram: 'melodic.dj_', tagline: 'Where melody meets bass',
+    bio: 'As the name says — melodic sounds that hit different. Creating emotional dancefloor moments through carefully curated sets.',
+    genres: ['Melodic House', 'Progressive', 'Trance'],
+    primaryColor: '#a855f7', accentColor: '#ec4899',
+    logoImage: '/avatars/melodic.jpg',
+    socialLinks: { instagram: 'https://instagram.com/melodic.dj_', spotify: '#', soundcloud: '#', apple_music: '#' },
+  },
+  {
+    slug: 'mishellmckay', name: 'Mishell McKay', realName: 'Mishell Mckay',
+    instagram: 'mishellmckay', tagline: 'Setting the tone',
+    bio: 'DJ and creative force bringing bold, dynamic energy to every event. Known for versatile sets that cross genres and boundaries.',
+    genres: ['Open Format', 'Pop', 'Dance'],
+    primaryColor: '#ec4899', accentColor: '#f59e0b',
+    logoImage: '/avatars/mishellmckay.jpg',
+    socialLinks: { instagram: 'https://instagram.com/mishellmckay', spotify: '#', tiktok: '#', youtube: '#' },
+  },
+  {
+    slug: 'neri', name: 'Neri', realName: 'Neria Mamka',
+    instagram: 'neri.music_', tagline: 'Music is the answer',
+    bio: 'Producer and DJ with deep roots in electronic music. Creating sounds that resonate from the studio to the stage.',
+    genres: ['Electronic', 'House', 'Production'],
+    primaryColor: '#6366f1', accentColor: '#10b981',
+    logoImage: '/avatars/neri.jpg',
+    socialLinks: { instagram: 'https://instagram.com/neri.music_', spotify: '#', soundcloud: '#', beatport: '#' },
+  },
+  {
+    slug: 'nerkio', name: 'Nerkio', realName: 'Nerkio',
+    instagram: 'nerkio_ofc', tagline: 'Official',
+    bio: 'Rising talent in the electronic scene with a signature sound that fuses deep grooves with energetic drops. One to watch.',
+    genres: ['Electronic', 'Bass', 'Future'],
+    primaryColor: '#ef4444', accentColor: '#8b5cf6',
+    logoImage: '/avatars/nerkio.jpg',
+    socialLinks: { instagram: 'https://instagram.com/nerkio_ofc', spotify: '#', soundcloud: '#', youtube: '#' },
+  },
+  {
+    slug: 'pinnyb', name: 'DJ Pinny', realName: 'Pinny B',
+    instagram: 'pinnyb', tagline: 'Keep it spinning',
+    bio: 'Seasoned DJ keeping crowds locked in with tight mixing and impeccable track selection. From weddings to warehouse parties.',
+    genres: ['Open Format', 'Club', 'Simcha'],
+    primaryColor: '#3b82f6', accentColor: '#10b981',
+    logoImage: '/avatars/pinnyb.jpg',
+    socialLinks: { instagram: 'https://instagram.com/pinnyb', spotify: '#', youtube: '#', tiktok: '#' },
+  },
+  {
+    slug: 'processor', name: 'Processor', realName: 'Processor',
+    instagram: 'processor_music', tagline: 'Goa Trance · Producer',
+    bio: 'Music producer and DJ specializing in Goa Trance and psychedelic sounds. Crafting otherworldly sonic journeys for the open-minded dancefloor.',
+    genres: ['Goa Trance', 'Psytrance', 'Production'],
+    primaryColor: '#06b6d4', accentColor: '#a855f7',
+    logoImage: '/avatars/processor.jpg',
+    socialLinks: { instagram: 'https://instagram.com/processor_music', spotify: '#', soundcloud: '#', beatport: '#', mixcloud: '#' },
+  },
+  {
+    slug: 'rada-b', name: 'Rada', realName: 'Rada',
+    instagram: 'rada___b', tagline: 'Bold beats, bolder energy',
+    bio: 'DJ bringing fierce, unapologetic energy to every set. Commanding the dancefloor with bold track selection and infectious rhythm.',
+    genres: ['Club', 'Dance', 'Electronic'],
+    primaryColor: '#ec4899', accentColor: '#a855f7',
+    logoImage: '/avatars/rada-b.jpg',
+    socialLinks: { instagram: 'https://instagram.com/rada___b', spotify: '#', soundcloud: '#', tiktok: '#' },
+  },
+  {
+    slug: 'remoteisland', name: 'Remote Island', realName: 'REMOTE',
+    instagram: 'remoteisland.ofc', tagline: 'Island state of mind',
+    bio: 'Creating sonic escapes that transport you somewhere else entirely. Atmospheric sets blending chill vibes with deep grooves.',
+    genres: ['Deep House', 'Chill', 'Organic'],
+    primaryColor: '#0ea5e9', accentColor: '#10b981',
+    logoImage: '/avatars/remoteisland.jpg',
+    socialLinks: { instagram: 'https://instagram.com/remoteisland.ofc', spotify: '#', soundcloud: '#', apple_music: '#' },
+  },
+  {
+    slug: 'salpal', name: 'Sal Pal', realName: 'Salad',
+    instagram: 'salpallllllllll', tagline: 'Fresh cuts only',
+    bio: 'Eclectic DJ with a taste for the unexpected. Mixing genres fearlessly and keeping every set unpredictable and fresh.',
+    genres: ['Eclectic', 'Indie Dance', 'Electronic'],
+    primaryColor: '#f59e0b', accentColor: '#ec4899',
+    logoImage: '/avatars/salpal.jpg',
+    socialLinks: { instagram: 'https://instagram.com/salpallllllllll', spotify: '#', soundcloud: '#', tiktok: '#' },
+  },
+  {
+    slug: 'shlomishanti', name: 'Shlomi Shanti', realName: 'Shlomi Shanti',
+    instagram: 'shlomishanti', tagline: 'Peace through music',
+    bio: 'Artist and DJ weaving together sounds that celebrate life, culture, and connection. Every set is a story told through rhythm.',
+    genres: ['Mizrahi', 'World', 'Electronic'],
+    primaryColor: '#8b5cf6', accentColor: '#f97316',
+    logoImage: '/avatars/shlomishanti.jpg',
+    socialLinks: { instagram: 'https://instagram.com/shlomishanti', spotify: '#', youtube: '#', tiktok: '#' },
+  },
+];
+
+export function getDjBySlug(slug: string): DjProfile | undefined {
+  return djs.find(d => d.slug === slug);
+}

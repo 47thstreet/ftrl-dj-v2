@@ -1,0 +1,35 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import { prisma } from '../../lib/prisma';
+import ProfileForm from '../../components/dashboard/ProfileForm';
+
+const user = (Astro.locals as any).user;
+const promoter = await prisma.promoter.findUnique({
+  where: { userId: user.id },
+  include: { site: true },
+});
+
+const site = promoter?.site;
+if (!site) return Astro.redirect('/dashboard');
+
+const profileData = {
+  displayName: promoter.displayName,
+  tagline: site.tagline,
+  bio: site.bio,
+  primaryColor: site.primaryColor,
+  accentColor: site.accentColor,
+  heroImage: site.heroImage ?? '',
+  logoImage: site.logoImage ?? '',
+  socialLinks: (typeof site.socialLinks === 'object' && site.socialLinks !== null)
+    ? site.socialLinks as Record<string, string>
+    : {},
+  genres: site.genres ? JSON.parse(site.genres as string) : [],
+  isPublished: site.isPublished,
+  slug: site.slug,
+};
+---
+
+<DashboardLayout title="Edit Profile" activeTab="profile">
+  <h1 class="page-title">Edit Profile</h1>
+  <ProfileForm client:load profile={profileData} />
+</DashboardLayout>

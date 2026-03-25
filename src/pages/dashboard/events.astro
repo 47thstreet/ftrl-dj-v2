@@ -1,0 +1,129 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import { prisma } from '../../lib/prisma';
+
+const user = (Astro.locals as any).user;
+const promoter = await prisma.promoter.findUnique({
+  where: { userId: user.id },
+  include: { site: true },
+});
+
+const site = promoter?.site;
+const eventDjs = site ? await prisma.eventDj.findMany({
+  where: { djId: site.id },
+  include: {
+    event: { include: { venue: true } },
+  },
+  orderBy: { event: { startsAt: 'desc' } },
+}) : [];
+
+const upcoming = eventDjs.filter((ed: any) => new Date(ed.event.startsAt) > new Date());
+const past = eventDjs.filter((ed: any) => new Date(ed.event.startsAt) <= new Date());
+---
+
+<DashboardLayout title="Events" activeTab="events">
+  <h1 class="page-title">My Events</h1>
+
+  {eventDjs.length === 0 ? (
+    <div class="empty">
+      <p>You haven't been linked to any events yet.</p>
+      <p class="empty-sub">When an organizer adds you to an event lineup, it will appear here.</p>
+    </div>
+  ) : (
+    <>
+      {upcoming.length > 0 && (
+        <div class="section">
+          <h2 class="section-title">Upcoming</h2>
+          <div class="event-list">
+            {upcoming.map((ed: any) => (
+              <div class="event-card">
+                <div class="event-date">
+                  <span class="ed-month">{new Date(ed.event.startsAt).toLocaleDateString('en', { month: 'short' })}</span>
+                  <span class="ed-day">{new Date(ed.event.startsAt).getDate()}</span>
+                </div>
+                <div class="event-info">
+                  <div class="event-name">{ed.event.name}</div>
+                  <div class="event-venue">{ed.event.venue.name} &middot; {ed.event.venue.city}</div>
+                  {ed.setTime && <div class="event-set">Set time: {ed.setTime}</div>}
+                  {ed.headline && <span class="badge">Headliner</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {past.length > 0 && (
+        <div class="section">
+          <h2 class="section-title">Past Events</h2>
+          <div class="event-list">
+            {past.map((ed: any) => (
+              <div class="event-card past">
+                <div class="event-date">
+                  <span class="ed-month">{new Date(ed.event.startsAt).toLocaleDateString('en', { month: 'short' })}</span>
+                  <span class="ed-day">{new Date(ed.event.startsAt).getDate()}</span>
+                </div>
+                <div class="event-info">
+                  <div class="event-name">{ed.event.name}</div>
+                  <div class="event-venue">{ed.event.venue.name}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  )}
+</DashboardLayout>
+
+<style>
+  .empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: rgba(255,255,255,0.4);
+  }
+  .empty p { font-size: 0.9375rem; font-weight: 600; }
+  .empty-sub { font-size: 0.8125rem; color: rgba(255,255,255,0.2); margin-top: 0.5rem; }
+
+  .section { margin-bottom: 2rem; }
+  .section-title {
+    font-size: 0.6875rem; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    margin-bottom: 0.75rem;
+  }
+
+  .event-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .event-card {
+    display: flex; gap: 1rem; align-items: center;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .event-card.past { opacity: 0.5; }
+
+  .event-date { text-align: center; min-width: 48px; }
+  .ed-month {
+    display: block; font-size: 0.625rem; font-weight: 800;
+    text-transform: uppercase; color: #8b5cf6;
+  }
+  .ed-day {
+    display: block; font-size: 1.5rem; font-weight: 900;
+    line-height: 1;
+  }
+
+  .event-name { font-size: 0.9375rem; font-weight: 700; }
+  .event-venue { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 0.125rem; }
+  .event-set { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 0.25rem; }
+
+  .badge {
+    display: inline-block; margin-top: 0.375rem;
+    padding: 0.125rem 0.5rem; border-radius: 999px;
+    font-size: 0.5625rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    background: rgba(139,92,246,0.15);
+    border: 1px solid rgba(139,92,246,0.3);
+    color: #a78bfa;
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import { prisma } from '../../lib/prisma';
+import AvailabilityCalendar from '../../components/dashboard/AvailabilityCalendar';
+
+const user = (Astro.locals as any).user;
+const promoter = await prisma.promoter.findUnique({
+  where: { userId: user.id },
+  include: { site: { include: { availability: true } } },
+});
+
+const site = promoter?.site;
+const availability = site?.availability ?? [];
+---
+
+<DashboardLayout title="Availability" activeTab="availability">
+  <h1 class="page-title">Availability</h1>
+  <AvailabilityCalendar client:load entries={availability.map((a: any) => ({
+    id: a.id,
+    date: a.date,
+    status: a.status,
+    note: a.note,
+  }))} />
+</DashboardLayout>

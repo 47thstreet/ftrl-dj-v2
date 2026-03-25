@@ -1,0 +1,26 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import { prisma } from '../../lib/prisma';
+import MediaUploader from '../../components/dashboard/MediaUploader';
+
+const user = (Astro.locals as any).user;
+const promoter = await prisma.promoter.findUnique({
+  where: { userId: user.id },
+  include: { site: { include: { media: { orderBy: { createdAt: 'desc' } } } } },
+});
+
+const site = promoter?.site;
+const media = site?.media ?? [];
+---
+
+<DashboardLayout title="Media" activeTab="media">
+  <h1 class="page-title">Media</h1>
+  <MediaUploader client:load media={media.map((m: any) => ({
+    id: m.id,
+    type: m.type,
+    url: m.url,
+    thumbnailUrl: m.thumbnailUrl,
+    title: m.title,
+    createdAt: m.createdAt.toISOString(),
+  }))} />
+</DashboardLayout>

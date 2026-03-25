@@ -1,0 +1,139 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import { prisma } from '../../lib/prisma';
+
+const user = (Astro.locals as any).user;
+const promoter = await prisma.promoter.findUnique({
+  where: { userId: user.id },
+  include: {
+    site: {
+      include: {
+        media: true,
+        eventDjs: { include: { event: true } },
+      },
+    },
+  },
+});
+
+const site = promoter?.site;
+const mediaCount = site?.media?.length ?? 0;
+const upcomingEvents = site?.eventDjs?.filter(
+  (ed: any) => new Date(ed.event.startsAt) > new Date()
+).length ?? 0;
+---
+
+<DashboardLayout title="Dashboard" activeTab="overview">
+  <h1 class="page-title">Welcome back, {user.name}</h1>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-value">{site?.isPublished ? 'Live' : 'Draft'}</div>
+      <div class="stat-label">Profile Status</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">{upcomingEvents}</div>
+      <div class="stat-label">Upcoming Events</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">{mediaCount}</div>
+      <div class="stat-label">Media Items</div>
+    </div>
+  </div>
+
+  {site && !site.isPublished && (
+    <div class="notice">
+      <p><strong>Your profile is in draft mode.</strong> Complete your profile and publish it to make your FTRL page live.</p>
+      <a href="/dashboard/profile" class="notice-link">Edit Profile &rarr;</a>
+    </div>
+  )}
+
+  {site && (
+    <div class="quick-links">
+      <a href={`/dj/${site.slug}`} target="_blank" class="quick-link">
+        <span class="ql-label">View your page</span>
+        <span class="ql-url">ftrl.ink/{site.slug}</span>
+      </a>
+      <a href="/dashboard/profile" class="quick-link">
+        <span class="ql-label">Edit profile</span>
+        <span class="ql-url">Bio, colors, links</span>
+      </a>
+      <a href="/dashboard/media" class="quick-link">
+        <span class="ql-label">Manage media</span>
+        <span class="ql-url">Photos, mixes, videos</span>
+      </a>
+    </div>
+  )}
+</DashboardLayout>
+
+<style>
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .stat-card {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .notice {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    background: rgba(139,92,246,0.05);
+    border: 1px solid rgba(139,92,246,0.15);
+    margin-bottom: 2rem;
+  }
+  .notice p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.5rem;
+  }
+  .notice-link {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #8b5cf6;
+  }
+
+  .quick-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+  .quick-link {
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.2s;
+    display: block;
+  }
+  .quick-link:hover {
+    border-color: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    transform: translateY(-1px);
+  }
+  .ql-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .ql-url {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+  }
+</style>
