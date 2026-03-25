@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { prisma } from '../../../../lib/prisma';
-import { createSession, setSessionCookie } from '../../../../../lib/auth';
+import { createSession, setSessionCookie } from '../../../../lib/auth';
 
 const INSTAGRAM_CLIENT_ID = import.meta.env.INSTAGRAM_CLIENT_ID;
 const INSTAGRAM_CLIENT_SECRET = import.meta.env.INSTAGRAM_CLIENT_SECRET;

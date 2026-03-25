@@ -7,12 +7,12 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "prisma generate && astro build",
     "preview": "astro preview",
+    "postinstall": "prisma generate",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^7.0.1",
     "@astrojs/react": "^5.0.0",
     "@astrojs/vercel": "^10.0.0",
     "@prisma/client": "^5.22.0",

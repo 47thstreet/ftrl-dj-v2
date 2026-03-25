@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { destroySession, clearSessionCookie, getSessionIdFromCookie } from '../../../../lib/auth';
+import { destroySession, clearSessionCookie, getSessionIdFromCookie } from '../../../lib/auth';
 
 export const POST: APIRoute = async ({ request }) => {
   const sessionId = getSessionIdFromCookie(request);

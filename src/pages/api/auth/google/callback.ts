@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { Google } from 'arctic';
 import { prisma } from '../../../../lib/prisma';
-import { createSession, setSessionCookie } from '../../../../../lib/auth';
+import { createSession, setSessionCookie } from '../../../../lib/auth';
 
 const google = new Google(
   import.meta.env.GOOGLE_CLIENT_ID,

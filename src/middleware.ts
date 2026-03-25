@@ -13,7 +13,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const sessionId = getSessionIdFromCookie(context.request);
   if (sessionId) {
     try {
-      const { validateSession } = await import('../lib/auth');
+      const { validateSession } = await import('./lib/auth');
       const user = await validateSession(sessionId);
       if (user) {
         (context.locals as any).user = user;

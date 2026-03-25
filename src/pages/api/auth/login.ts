@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { prisma } from '../../../lib/prisma';
-import { verifyPassword, createSession, setSessionCookie } from '../../../../lib/auth';
+import { verifyPassword, createSession, setSessionCookie } from '../../../lib/auth';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
