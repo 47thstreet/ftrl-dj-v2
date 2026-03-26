@@ -643,10 +643,10 @@ const links = Object.entries(dj.socialLinks || {})
         <div class="avatar-wrap">
           {avatarSrc ? (
             <>
-              <img src={avatarSrc} alt={dj.name} class="avatar" />
-              <div class="glitch-cyan"><img src={avatarSrc} alt="" /></div>
-              <div class="glitch-magenta"><img src={avatarSrc} alt="" /></div>
-              <div class="glitch-white"><img src={avatarSrc} alt="" /></div>
+              <img src={avatarSrc} alt={dj.name} class="avatar" fetchpriority="high" decoding="async" />
+              <div class="glitch-cyan"><img src={avatarSrc} alt="" decoding="async" /></div>
+              <div class="glitch-magenta"><img src={avatarSrc} alt="" decoding="async" /></div>
+              <div class="glitch-white"><img src={avatarSrc} alt="" decoding="async" /></div>
             </>
           ) : (
             <div class="avatar-fallback">{dj.name.charAt(0)}</div>
