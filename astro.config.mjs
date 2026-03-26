@@ -7,6 +7,6 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   integrations: [react(), sentry({
-    dsn: import.meta.env.SENTRY_DSN,
+    dsn: process.env.SENTRY_DSN,
   })],
 });
